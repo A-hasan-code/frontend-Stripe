@@ -1,0 +1,8 @@
+.logo-slider {
+  padding: 40px 0;
+}
+
+.logo-slider img {
+  max-width: 150px; /* Adjust based on your logo sizes */
+  filter: brightness(0) invert(1); /* Optional: make logos white for dark background */
+}

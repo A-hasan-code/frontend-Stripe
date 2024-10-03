@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Signup from "./components/Login/Signup";
+import Login from "./components/Login/Login";
+import Headers from "./components/Header/Header";
+import Home from "./pages/HomePage";
+import CartDetails from "./components/Cart/CartDetail";
+import { checkAuth, fetchUser } from "./Redux/Slices/UserSlices/UserSlice";
+import "./App.css";
+import ProductPage from "./pages/ProductPages";
+import Success from "./pages/Success";
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
 
+  const { userInfo, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(checkAuth());
+    if (isAuthenticated && !userInfo) {
+      dispatch(fetchUser());
+    }
+  }, [isAuthenticated, userInfo, dispatch]);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Headers />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/Cart" element={<CartDetails />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/success" element={<Success />} />
+        {/* Add other routes as needed */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

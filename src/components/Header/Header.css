@@ -1,0 +1,62 @@
+.navbar-custom {
+  background: rgba(110, 125, 255, 0.8); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Optional: adds a blur effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s; /* Smooth transition */
+}
+
+.logo {
+  height: 50px;
+  opacity: 0.9; /* Semi-transparent logo */
+  transition: transform 0.3s, opacity 0.3s; /* Smooth transition for scale and opacity */
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  opacity: 1; /* Fully opaque on hover */
+}
+
+h3 {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links .active {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 5px;
+}
+
+.nav-link {
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+.nav-icons {
+  transition: transform 0.3s;
+}
+
+.nav-icons:hover {
+  transform: scale(1.1);
+}
+
+.text-light {
+  transition: color 0.3s;
+}
+
+.text-light:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 992px) {
+  .navbar-custom {
+    flex-direction: column;
+  }
+  .nav-links {
+    margin-top: 10px;
+  }
+}
